@@ -61,7 +61,7 @@ Guardrail quota: after 2 asks without a `limit` or `stop_and_ask`, only those ty
   - The breaker opens for 60 s after 2 rate limits, 1 timeout, or 1 call over `JEV_TIMEOUT_MS`.
   - The rate limiter allows 30 req/s and 80k tok/s.
 - **Logging:** every call writes one `decisions_log` row per decision. The cost of a batched call is split evenly, and the counterfactual is the same prompt priced on Haiku. Each call also emits `sk:usage` records.
-- **Pricing (2026-10-03):** Jev is $0.042 per 1M input tokens and output is free. Haiku 4.5 is $1 / $5 per 1M tokens (in / out).
+- **Pricing:** from `PRICE_TABLE` in `@sidekik/contracts` (dated). Jev is $0.042 per 1M input tokens and output is free; Haiku 4.5 is $1 / $5 per 1M tokens (in / out).
 
 ### Decisions (`src/decide/`)
 

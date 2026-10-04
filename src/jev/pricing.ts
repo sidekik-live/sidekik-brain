@@ -1,14 +1,13 @@
-import type { DecisionProvider } from "@sidekik/contracts";
+import { PRICE_TABLE, type DecisionProvider } from "@sidekik/contracts";
 import type { JevUsage } from "./types.js";
 
-/**
- * USD per token, as of 2026-10-03.
- * Jev: docs.typesafe.ai/models ($0.042 per Mtok input, output free).
- * Claude Haiku 4.5: $1 / $5 per Mtok in/out.
- */
+const JEV = PRICE_TABLE.typesafe["jev-1.13.0"];
+const HAIKU = PRICE_TABLE.anthropic["claude-haiku-4-5"];
+
+/** USD per token, from the dated PRICE_TABLE in @sidekik/contracts. */
 export const PRICES = {
-  jev: { in: 0.042 / 1e6, out: 0 },
-  haiku: { in: 1 / 1e6, out: 5 / 1e6 },
+  jev: { in: JEV.tokens_in, out: JEV.tokens_out },
+  haiku: { in: HAIKU.tokens_in, out: HAIKU.tokens_out },
 } as const;
 
 /** Output tokens Haiku spends per question for `{answer, probability}` (used for the counterfactual). */

@@ -12,8 +12,8 @@ importers:
         specifier: ^0.131.0
         version: 0.131.0(zod@4.6.5)
       '@sidekik/contracts':
-        specifier: github:heisenberg1804/sidekik-platform#v0.1.0-rc.2
-        version: git+https://github.com/heisenberg1804/sidekik-platform.git#e1b0c18e8550bbf11ec4b1363351f45b0868802e
+        specifier: github:sidekik-live/sidekik-platform#v0.1.0
+        version: git+https://github.com/sidekik-live/sidekik-platform.git#580ca72422a93c67f99676531ddf11062deaa01d
       '@supabase/supabase-js':
         specifier: ^2.117.2
         version: 2.117.2
@@ -343,9 +343,9 @@ packages:
   '@rolldown/pluginutils@1.0.1':
     resolution: {integrity: sha512-2j9bGt5Jh8hj+vPtgzPtl72j0yRxHAyumoo6TNfAjsLB04UtpSvPbPcDcBMxz7n+9CYB0c1GxQFxYRg2jimqGw==}
 
-  '@sidekik/contracts@git+https://github.com/heisenberg1804/sidekik-platform.git#e1b0c18e8550bbf11ec4b1363351f45b0868802e':
-    resolution: {commit: e1b0c18e8550bbf11ec4b1363351f45b0868802e, repo: https://github.com/heisenberg1804/sidekik-platform.git, type: git}
-    version: 0.1.0-rc.2
+  '@sidekik/contracts@git+https://github.com/sidekik-live/sidekik-platform.git#580ca72422a93c67f99676531ddf11062deaa01d':
+    resolution: {commit: 580ca72422a93c67f99676531ddf11062deaa01d, repo: https://github.com/sidekik-live/sidekik-platform.git, type: git}
+    version: 0.1.0
     engines: {node: '>=20'}
 
   '@stablelib/base64@1.0.1':
@@ -1080,7 +1080,7 @@ snapshots:
 
   '@rolldown/pluginutils@1.0.1': {}
 
-  '@sidekik/contracts@git+https://github.com/heisenberg1804/sidekik-platform.git#e1b0c18e8550bbf11ec4b1363351f45b0868802e':
+  '@sidekik/contracts@git+https://github.com/sidekik-live/sidekik-platform.git#580ca72422a93c67f99676531ddf11062deaa01d':
     dependencies:
       ioredis: 6.0.0
       pino: 10.4.0
