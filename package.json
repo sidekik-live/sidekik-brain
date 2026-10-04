@@ -20,7 +20,7 @@
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.131.0",
-    "@sidekik/contracts": "link:../sidekik-platform",
+    "@sidekik/contracts": "github:heisenberg1804/sidekik-platform#v0.1.0-rc.2",
     "@supabase/supabase-js": "^2.117.2",
     "@typesafe-ai/sdk": "^0.6.0",
     "fastify": "^5.12.5",
