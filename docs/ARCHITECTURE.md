@@ -163,6 +163,8 @@ Each stream is capped with `MAXLEN ~ 10000`. Consumers use `XREADGROUP` with `BL
 | meetbot → perception | `WS /internal/frames/:sid` | streaming |
 | gateway, perception → Presidio | analyzer / anonymizer / image-redactor | 300 ms |
 
+Request/response schemas for every endpoint above are in `@sidekik/contracts` (`contracts/api.ts`). Shapes marked draft there are for the owning service to confirm.
+
 ### 4.4 Auth
 
 | Hop | Mechanism |
