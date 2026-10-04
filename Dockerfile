@@ -1,10 +1,20 @@
 # syntax=docker/dockerfile:1
+# @sidekik/contracts comes from a private GitHub repo, so the install needs a read-only token:
+#   docker build --secret id=NPM_GITHUB_TOKEN,env=NPM_GITHUB_TOKEN .     (BuildKit secret, preferred)
+#   docker build --build-arg NPM_GITHUB_TOKEN=... .                     (Railway build variable)
+# The token is only used by the install step of the build stage; the runtime image never contains it.
 FROM node:22-slim AS build
 WORKDIR /app
 RUN apt-get update && apt-get install -y --no-install-recommends git ca-certificates && rm -rf /var/lib/apt/lists/*
 RUN corepack enable && corepack prepare pnpm@10.34.6 --activate
 COPY package.json pnpm-lock.yaml ./
-RUN pnpm install --frozen-lockfile
+ARG NPM_GITHUB_TOKEN
+RUN --mount=type=secret,id=NPM_GITHUB_TOKEN \
+    TOKEN="$(cat /run/secrets/NPM_GITHUB_TOKEN 2>/dev/null || printf '%s' "$NPM_GITHUB_TOKEN")"; \
+    if [ -n "$TOKEN" ]; then \
+      export GIT_CONFIG_COUNT=1 GIT_CONFIG_KEY_0="url.https://x-access-token:${TOKEN}@github.com/.insteadOf" GIT_CONFIG_VALUE_0="https://github.com/"; \
+    fi; \
+    pnpm install --frozen-lockfile
 COPY tsconfig.json tsconfig.build.json ./
 COPY src ./src
 RUN pnpm build && pnpm prune --prod

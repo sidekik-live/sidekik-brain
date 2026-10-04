@@ -117,4 +117,12 @@ Every variable is in `.env.example`.
 
 ## Deploy
 
-Run `docker build -t sidekik-brain .`. The image is `node:22-slim`, listens on `::` at `PORT`, and has a `/healthz` probe. Set every variable from `.env.example` in Railway.
+`@sidekik/contracts` comes from a private GitHub repo, so the build needs a read-only GitHub token:
+
+```sh
+NPM_GITHUB_TOKEN=... docker build --secret id=NPM_GITHUB_TOKEN,env=NPM_GITHUB_TOKEN -t sidekik-brain .
+```
+
+On Railway, set `NPM_GITHUB_TOKEN` as a build variable; the Dockerfile also accepts it as a build arg. Only the install step uses the token, and the runtime image never contains it.
+
+The image is `node:22-slim`. It runs as `node`, listens on `::` at `PORT`, and has a `/healthz` health check. Set every variable from `.env.example` in Railway.
